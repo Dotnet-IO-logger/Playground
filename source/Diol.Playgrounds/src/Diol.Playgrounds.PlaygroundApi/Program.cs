@@ -196,7 +196,7 @@ app.MapDelete("/api/fail-if-negative/{id}", ([FromRoute] int id) =>
 {
     if (id < 0)
     {
-        throw new Exception("Negative value");
+        return Results.BadRequest(id);
     }
 
     return Results.Ok(id);
