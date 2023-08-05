@@ -47,7 +47,9 @@ app.UseHttpsRedirection();
 app.MapGet("/api/default-client/bing", 
     async (HttpClient httpClient) =>
 {
-    httpClient.DefaultRequestHeaders.Add("my-default-header", "my-value");
+    httpClient.DefaultRequestHeaders.Add(
+        "my-default-header", 
+        "my-value");
 
     var response = await httpClient
         .GetAsync("https://www.bing.com")

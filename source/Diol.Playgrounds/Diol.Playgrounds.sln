@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D892EEA3-8F67-4406-A7C7-9BB0EF28A2F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diol.Playgrounds.PlaygroundApi", "src\Diol.Playgrounds.PlaygroundApi\Diol.Playgrounds.PlaygroundApi.csproj", "{D917E863-B4D6-47DD-81F5-4AF9EE43F6FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diol.Playgrounds.PlaygroundApi", "src\Diol.Playgrounds.PlaygroundApi\Diol.Playgrounds.PlaygroundApi.csproj", "{D917E863-B4D6-47DD-81F5-4AF9EE43F6FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
