@@ -213,4 +213,14 @@ app.MapDelete("/api/fail-if-negative/{id}",
     return Results.Ok(id);
 });
 
+app.MapPut("/api/put", () => 
+{
+    return Results.Ok();
+});
+
+app.MapPatch("/api/patch", () => 
+{
+    return Results.Ok();
+});
+
 app.Run();
