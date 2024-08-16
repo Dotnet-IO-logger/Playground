@@ -12,17 +12,12 @@ builder.Services.AddSwaggerGen();
 // 1. Add http client factory
 builder.Services.AddHttpClient();
 
-// add named http client and httplogger
-builder.Services.AddHttpClient("bingClient", httpClient =>
+// add named http client
+builder.Services.AddHttpClient("customClient", httpClient => 
 {
-    httpClient.DefaultRequestHeaders.Add("my-named-header", "value-1");
-});
-
-builder.Services.AddHttpClient("multipleClient", httpClient =>
-{
-    httpClient.DefaultRequestHeaders.Add("my-named-header-1", "value-1");
-    httpClient.DefaultRequestHeaders.Add("my-named-header-2", "value-2");
-    httpClient.DefaultRequestHeaders.Add("my-named-header-3", "value-3");
+    httpClient.DefaultRequestHeaders.Add("my-custom-header-text", "my-text");
+    httpClient.DefaultRequestHeaders.Add("my-custom-header-number", $"{20240816}");
+    httpClient.DefaultRequestHeaders.Add("my-custom-header-date", $"{new DateOnly(2024, 08, 16).ToShortDateString()}");
 });
 
 // 2. Add http logger for asp.net core
@@ -44,117 +39,56 @@ app.UseHttpLogging();
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/default-client/bing", 
-    async (HttpClient httpClient) =>
+app.MapGet("/api/http/default-client", async (HttpClient httpClient) => 
 {
-    httpClient.DefaultRequestHeaders.Add(
-        "my-default-header", 
-        "my-value");
+    var response = await httpClient
+        .GetAsync("https://www.bing.com")
+        .ConfigureAwait(false);
+
+    return response.StatusCode;
+});
+
+app.MapGet("api/http/custom-client", async (IHttpClientFactory factory) =>
+{
+    var httpClient = factory.CreateClient("customClient");
 
     var response = await httpClient
         .GetAsync("https://www.bing.com")
         .ConfigureAwait(false);
 
-    var content = await response.Content
-        .ReadAsStringAsync()
-        .ConfigureAwait(false);
-
     return response.StatusCode;
 });
 
-
-app.MapGet("/api/default-client/bing-and-google", 
-    async (HttpClient httpClient) =>
-{
-    httpClient.DefaultRequestHeaders.Add("my-default-header-1", "value-1");
-    httpClient.DefaultRequestHeaders.Add("my-default-header-2", "value-2");
-    httpClient.DefaultRequestHeaders.Add("my-default-header-3", "value-3");
-
-    var urls = new string[] { "https://www.bing.com", "https://www.google.com" };
-
-    var tasks = urls.Select(url => Task.Run(async () =>
+app.MapGet("api/http/multiple-calls", 
+    async (HttpClient httpClient) => 
     {
-        var response = await httpClient
-        .GetAsync(url)
-        .ConfigureAwait(false);
+        var urls = new string[]
+        {
+            "https://www.bing.com",
+            "https://www.google.com"
+        };
 
-        var content = await response.Content
-            .ReadAsStringAsync()
+        var tasks = urls.Select(url => 
+            Task.Run(async () =>
+            {
+                var response = await httpClient
+                    .GetAsync(url)
+                    .ConfigureAwait(false);
+
+                var content = await response.Content
+                    .ReadAsStringAsync()
+                    .ConfigureAwait(false);
+
+                return response.StatusCode;
+            }));
+
+        var results = await Task.WhenAll(tasks)
             .ConfigureAwait(false);
 
-        return response.StatusCode;
-    }));
+        return results;
+    });
 
-    var results = await Task.WhenAll(tasks)
-        .ConfigureAwait(false);
-
-    return results;
-});
-
-app.MapGet("/api/named-client/bing", 
-    async (IHttpClientFactory factory) =>
-{
-    var httpClient = factory.CreateClient("bingClient");
-
-    var response = await httpClient
-        .GetAsync("https://www.bing.com")
-        .ConfigureAwait(false);
-
-    var content = await response.Content
-        .ReadAsStringAsync()
-        .ConfigureAwait(false);
-
-    return response.StatusCode;
-});
-
-
-app.MapGet("/api/named-client/bing-and-google", 
-    async (IHttpClientFactory factory) =>
-{
-    var httpClient = factory.CreateClient("multipleClient");
-
-    var urls = new string[] { "https://www.bing.com", "https://www.google.com" };
-
-    var tasks = urls.Select(url => Task.Run(async () =>
-    {
-        var response = await httpClient
-        .GetAsync(url)
-        .ConfigureAwait(false);
-
-        var content = await response.Content
-            .ReadAsStringAsync()
-            .ConfigureAwait(false);
-
-        return response.StatusCode;
-    }));
-
-    var results = await Task.WhenAll(tasks)
-        .ConfigureAwait(false);
-
-    return results;
-});
-
-app.MapGet("/api/default-client/blocking-bing", 
-    (HttpClient httpClient) =>
-{
-    httpClient.DefaultRequestHeaders.Add("my-default-header", "my-value");
-
-    var response = httpClient
-        .GetAsync("https://www.bing.com")
-        .ConfigureAwait(false)
-        .GetAwaiter()
-        .GetResult();
-
-    var content = response.Content
-        .ReadAsStringAsync()
-        .ConfigureAwait(false)
-        .GetAwaiter()
-        .GetResult();
-
-    return response.StatusCode;
-});
-
-app.MapGet("api/get-logger-providers", 
+app.MapGet("api/aspnet/get-logger-providers", 
     (IServiceProvider serviceProvider) =>
 {
     var services = serviceProvider.GetServices<ILoggerProvider>();
@@ -164,42 +98,36 @@ app.MapGet("api/get-logger-providers",
     return names;
 });
 
-app.MapGet("/api/process-id", () =>
+app.MapGet("/api/aspnet/process-id", () =>
 {
     return Process.GetCurrentProcess().Id;
 });
 
-app.MapGet("/api/with-headers", 
-    ([FromHeader] int myHeader) =>
+app.MapPost("api/aspnet/with-body",
+    ([FromBody] DummyModel bodyAttribute) =>
+    {
+        return bodyAttribute;
+    });
+
+app.MapPut("/api/aspnet/with-headers", 
+    ([FromHeader] string myHeader, 
+    HttpRequest request) =>
 {
+    request.HttpContext.Response.Headers.Add("my-response-header", $"{myHeader}");
+
     return myHeader;
 });
 
-app.MapGet("/api/with-route-param/{routeAttribute}", 
+app.MapPut("/api/aspnet/with-route-param/{routeAttribute}", 
     ([FromRoute] int routeAttribute) =>
 {
     return routeAttribute;
 });
 
-app.MapGet("/api/with-query-param", 
+app.MapPatch("/api/aspnet/with-query-param", 
     ([FromQuery] int queryParam) =>
 {
     return queryParam;
-});
-
-app.MapPost("api/with-body-param", 
-    ([FromBody] DummyModel bodyAttribute) =>
-{
-    return bodyAttribute;
-});
-
-app.MapGet("/api/with-response-headers", 
-    (HttpRequest request) =>
-{
-    request.HttpContext.Response.Headers.Add("my-response-header-1", "value-1");
-    request.HttpContext.Response.Headers.Add("my-response-header-2", "value-2");
-
-    return Results.Ok();
 });
 
 app.MapDelete("/api/fail-if-negative/{id}", 
@@ -211,16 +139,6 @@ app.MapDelete("/api/fail-if-negative/{id}",
     }
 
     return Results.Ok(id);
-});
-
-app.MapPut("/api/put", () => 
-{
-    return Results.Ok();
-});
-
-app.MapPatch("/api/patch", () => 
-{
-    return Results.Ok();
 });
 
 app.Run();
