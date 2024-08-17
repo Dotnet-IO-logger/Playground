@@ -1,6 +1,8 @@
 # DIOL Playground
 
-Welcome to the DIOL Playground! This repository is a collection of playground and demo projects for DIOL, a powerful HTTP logging tool for Visual Studio.
+Welcome to the DIOL Playground! 
+
+This repository is a collection of playground and demo projects for DIOL, a powerful HTTP logging tool for Visual Studio.
 
 This repository serves two main groups of users:
 
