@@ -1,0 +1,6 @@
+@Example1HttpLoggingSample_HostAddress = http://localhost:5000
+
+GET {{Example1HttpLoggingSample_HostAddress}}/bing/
+Accept: application/json
+
+###
