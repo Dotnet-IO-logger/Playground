@@ -26,12 +26,12 @@ Whether you’re a seasoned developer or a beginner, this guide offers a practic
 * In `Solution Explorer` find `Example2AspnetEndpointLoggingSample` project and right click on it. 
 * Select `Set as StartUp Project`
 
-### 3. Setup httpClient and logs 
+### 3. Setup logging for AspNET endpoints 
 
 * Call search panel by pressing `CTRL` + `F`
 * In searching category select `Current project`
 * As a search value type `TODO`
-* You should see 3 items (2 in `Program.cs` and 1 in `Startup.cs`)
+* You should see 3 items (2 in `Program.cs` and 1 in `appsettings.development.json`)
 * Uncomment things from `TODO` **1** till `TODO` **4** (`TODO` **5** will be done in advanced section)
 * `TODO` **1** is in `Program.cs` file: Register logging for `AspNET`
 * `TODO` **2** is in `Program.cs` file: Add logging middleware for a request pipeline
