@@ -2,13 +2,13 @@
 
 ## Description
 
-This document provides a concise and straightforward demonstration of `Diol`, a powerful AspNET endpoint logging tool for Visual Studio. 
+This document provides a concise and straightforward demonstration of `Diol`, a powerful logging tool for Visual Studio. 
 
 The guide is designed to be completed in approximately **5 minutes**, making it a quick and easy way to familiarize yourself with Diol’s capabilities. 
 
 The steps are **clear** and **simple**, requiring no specific prior knowledge. 
 
-Whether you’re a seasoned developer or a beginner, this guide offers a practical introduction to incorporating `Diol` into your projects for enhanced AspNET logging.
+Whether you’re a seasoned developer or a beginner, this guide offers a practical introduction to incorporating `Diol` into your projects for enhanced logging.
 
 ## Todo
 

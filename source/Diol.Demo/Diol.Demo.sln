@@ -5,9 +5,11 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4DEFBDA-A867-432D-870E-E032105FD492}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example1HttpLoggingSample", "src\Example1HttpLoggingSample\Example1HttpLoggingSample.csproj", "{D44900F3-EB15-48B0-AABA-773C6F4394AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example1HttpLoggingSample", "src\Example1HttpLoggingSample\Example1HttpLoggingSample.csproj", "{D44900F3-EB15-48B0-AABA-773C6F4394AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example2AspnetEndpointLoggingSample", "src\Example2AspnetEndpointLoggingSample\Example2AspnetEndpointLoggingSample.csproj", "{12D51CA6-643F-4A78-8F50-23780261F9DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example2AspnetEndpointLoggingSample", "src\Example2AspnetEndpointLoggingSample\Example2AspnetEndpointLoggingSample.csproj", "{12D51CA6-643F-4A78-8F50-23780261F9DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example3EntityFrameworkLoggingSample", "src\Example3EntityFrameworkLoggingSample\Example3EntityFrameworkLoggingSample.csproj", "{22D0BB38-E0A6-4F09-BDB4-D72675972B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{12D51CA6-643F-4A78-8F50-23780261F9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12D51CA6-643F-4A78-8F50-23780261F9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12D51CA6-643F-4A78-8F50-23780261F9DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D0BB38-E0A6-4F09-BDB4-D72675972B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D0BB38-E0A6-4F09-BDB4-D72675972B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D0BB38-E0A6-4F09-BDB4-D72675972B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D0BB38-E0A6-4F09-BDB4-D72675972B0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D44900F3-EB15-48B0-AABA-773C6F4394AA} = {F4DEFBDA-A867-432D-870E-E032105FD492}
 		{12D51CA6-643F-4A78-8F50-23780261F9DA} = {F4DEFBDA-A867-432D-870E-E032105FD492}
+		{22D0BB38-E0A6-4F09-BDB4-D72675972B0D} = {F4DEFBDA-A867-432D-870E-E032105FD492}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C1D3B13-4F3D-4D07-9439-0ECAC9C0990F}

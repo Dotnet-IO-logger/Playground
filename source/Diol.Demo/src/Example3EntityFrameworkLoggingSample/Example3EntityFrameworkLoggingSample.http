@@ -1,0 +1,6 @@
+@Example3EntityFrameworkLoggingSample_HostAddress = http://localhost:5025
+
+GET {{Example3EntityFrameworkLoggingSample_HostAddress}}/api/categories
+Accept: application/json
+
+###

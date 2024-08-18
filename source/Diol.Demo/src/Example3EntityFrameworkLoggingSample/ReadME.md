@@ -1,4 +1,4 @@
-﻿# Diol. Example 1 - Http Logging Sample
+﻿# Diol. Example 3 - EntityFramework Logging Sample
 
 ## Description
 
@@ -23,54 +23,61 @@ Whether you’re a seasoned developer or a beginner, this guide offers a practic
 
 * Clone the repository
 * Open `Diol.Demo` solution in Visual Studio
-* In `Solution Explorer` find `Example1HttpLoggingSample` project and right click on it. 
+* In `Solution Explorer` find `Example3EntityFrameworkLoggingSample` project and right click on it. 
 * Select `Set as StartUp Project`
+* Open a terminal in the project directory (not the Solution directory)
+* Run `dotnet ef database update` to create a database
 
-### 3. Setup httpClient and logs 
+### 3. Setup logging for EntityFramework 
 
 * Call search panel by pressing `CTRL` + `F`
 * In searching category select `Current project`
 * As a search value type `TODO`
-* You should see 5 items (4 in `Program.cs` and 1 in `appsettings.development.json`)
-* Uncomment things from `TODO` **1** till `TODO` **4** (`TODO` **5** will be done in advanced section)
-* `TODO` **1** is in `Program.cs` file: Register `HttpClient`
-* `TODO` **2** is in `Program.cs` file: Make a http call to an external service
-* `TODO` **3** is in `Startup.cs` file: Return a status code to a client
-* `TODO` **4** is in `appsettings.development.json`: Setup logs filter for `HttpClient`
+* You should see one item (in `appsettings.development.json`)
+* Uncomment things from `TODO` **1**
+* `TODO` **1** is in `appsettings.development.json`: Setup logs filter for `EntityFramework`
 
 ### 4. Run the project and check DIOL
 
 * Press `F5` to run the project
 * Return to Visual Studio and open `Diol` window
 * Return to the browser and refresh the page
-* Call `Bing` endpoint from `swagger` page
+* Find endpoints from `TODOs`: 2, 3 and 4
+* Call an endpoint from `swagger` page
 * Refresh the browser
 * Return to Visual Studio and check the logs in `Diol` window
 * Click on the log and check the details
+* Try another endpoints from `TODOs`: 2, 3 and 4. Compare a LINQ expression and final SQL query
 * Stop the project
 
 ### 5. Advanced section
 
-* Find `TODO` **5** in `Program.cs` and uncomment it
 * Run the project again
-* Call `Bing` endpoint from `swagger` page
+* Find endpoints from `TODOs`: 5, 6, 7 and 8
+* Try endpoints from `swagger` page
 * Refresh the browser
 * Return to Visual Studio and check the logs in `Diol` window
 * Click on the log and check the details
-* Check the `Request headers` section
+* Learn how `Diol` can help you with LINQ expressions and SQL queries such as joins, group by, where, transactions, etc.
 * Stop the project
 
 ### Well done!
 
-Well done on successfully navigating through this quick demonstration!
+Congratulations on completing the Diol EntityFramework Logging Sample!
 
 ## 6. Summary
 
-You’ve not only installed Diol and set up a local project, but also configured an HttpClient and delved into HTTP logs using Diol’s user-friendly interface. 
+In this guide, you’ve achieved the following:
 
-This hands-on experience has equipped you with the practical knowledge to further explore and utilize Diol in your future projects. 
+* **Installation**: You’ve successfully installed Diol from the Visual Studio Marketplace.
+* **Project Setup**: You’ve cloned the repository and set up the Diol.Demo solution locally.
+* **Configuration**: You’ve configured EntityFramework logging in the project by updating the `appsettings.development.json` and uncommenting the necessary sections.
+* **Execution**: You’ve run the project, interacted with various endpoints, and utilized the Diol window for log analysis.
+* **Advanced Exploration**: You’ve engaged with different endpoints, analyzed LINQ expressions and SQL queries, and learned how Diol can help you with complex database operations.
 
-Remember, effective logging is an integral part of software development and debugging, and Diol makes this process significantly more streamlined and efficient.
+This hands-on guide has provided you with a practical understanding of how to leverage Diol for effective logging in your future EntityFramework projects.
+
+Remember, efficient logging is essential for development and debugging, and Diol simplifies this process, especially when working with databases and EntityFramework.
 
 ## Show Your Support
 
